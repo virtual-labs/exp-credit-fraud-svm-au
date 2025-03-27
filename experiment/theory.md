@@ -14,14 +14,13 @@ Kernel functions allow SVMs to operate in a high-dimensional, implicit feature s
 
 <ul>
   <li>Linear Kernel: Suitable for linearly separable data.</li>
-  <p>\[ K(x_i, x_j) = x_i \cdot x_j \]</p>
 
   <li>Polynomial Kernel: Projects data into a higher-dimensional polynomial space.</li>
-  <p>\[ K(x_i, x_j) = (\gamma \, x_i \cdot x_j + r)^d \]</p>
-
+ 
   <li>Radial Basis Function (RBF) Kernel: Also known as the Gaussian kernel, ideal for non-linear data.</li>
-  <p>\[ K(x_i, x_j) = \exp\left(-\gamma \|x_i - x_j\|^2\right) \]</p>
+  
 </ul>
+
 ### Credit Card Fraud Detection with SVM
 
 Credit card fraud detection is a vital application of machine learning in the financial sector, where the goal is to accurately identify fraudulent transactions from a large volume of legitimate ones. Due to the highly imbalanced nature of the data—where fraudulent transactions represent a very small portion—detecting fraud becomes a challenging task. Support Vector Machine (SVM) is particularly well-suited for such classification problems because of its ability to find an optimal decision boundary between classes, even in high-dimensional spaces. In fraud detection, SVM helps distinguish between normal and suspicious behavior by creating a hyperplane that maximizes the margin between different classes. Linear SVMs work efficiently when data is linearly separable, but real-world fraud data is often non-linear and complex. In such cases, kernel functions like Polynomial and Radial Basis Function (RBF) are used to transform the data into higher dimensions, allowing for better separation. SVM models are trained and fine-tuned using hyperparameters such as the regularization parameter (C) and the kernel coefficient (γ) to balance accuracy and generalization. By evaluating performance through metrics like precision, recall, and accuracy, SVM proves to be an effective tool for identifying fraudulent credit card transactions and minimizing false positives.
