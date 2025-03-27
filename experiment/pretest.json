@@ -2,35 +2,69 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "What is the main goal of using Support Vector Machine (SVM) in credit card fraud detection?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "To reduce the number of credit card transactions",
+        "b": "To identify fraudulent transactions accurately",
+        "c": "To increase transaction speed",
+        "d": "To encrypt transaction data"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "The goal is not to limit transactions but to detect fraud within them.",
+        "b": "Correct! SVM is used to classify and detect fraudulent vs. legitimate transactions.",
+        "c": "SVM focuses on classification accuracy, not transaction processing speed.",
+        "d": "Encryption is a security function, not related to SVM or classification."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which of the following is NOT a commonly used kernel in SVM?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Linear kernel",
+        "b": "Polynomial kernel",
+        "c": "Radial Basis Function (RBF) kernel",
+        "d": "Sigmoid kernel"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Commonly used when data is linearly separable.",
+        "b": "Used to model complex, non-linear relationships.",
+        "c": "Very popular for non-linear classification tasks.",
+        "d": "Correct!Rarely used in practice due to unstable performance in many cases."
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Why is SVM effective in handling credit card fraud detection problems?",
+      "answers": {
+        "a": "It requires no preprocessing",
+        "b": "It automatically balances the dataset",
+        "c": "It performs well with high-dimensional and imbalanced data",
+        "d": "It always gives 100% accuracy"
+      },
+      "explanations": {
+        "a": "Preprocessing like normalization is essential for SVM performance.",
+        "b": "Class balancing techniques must be applied manually.",
+        "c": "Correct!It performs well with high-dimensional and imbalanced data",
+        "d": "No model guarantees 100% accuracy in real-world scenarios."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the role of kernel functions in SVM?",
+      "answers": {
+        "a": "To convert numeric data into categorical",
+        "b": "To optimize precision and recall",
+        "c": "To map data into a higher-dimensional space for better separability",
+        "d": "To remove outliers from the data"
+      },
+      "explanations": {
+        "a": "Data type conversion is unrelated to kernels.",
+        "b": "Precision and recall are performance metrics, not roles of kernel functions.",
+        "c": "Correct!To map data into a higher-dimensional space for better separability",
+        "d": "Kernel functions do not remove outliers; that requires other preprocessing techniques."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
