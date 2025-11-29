@@ -2,89 +2,97 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What is the purpose of the kernel trick in SVM?",
+      "question": "What is the main advantage of the kernel trick in Support Vector Machines?",
       "answers": {
-        "a": "To reduce the dataset size",
-        "b": "To simplify the SVM algorithm",
-        "c": "To project data into higher dimensions for better separation",
-        "d": "To eliminate irrelevant features"
+        "a": "It explicitly transforms the data into a very high-dimensional space",
+        "b": "It allows non-linear decision boundaries without ever computing coordinates in the high-dimensional space",
+        "c": "It reduces the number of features in the dataset",
+        "d": "It automatically removes outliers"
       },
       "explanations": {
-        "a": "Kernel trick doesn’t reduce data size; it increases feature complexity.",
-        "b": "Kernel adds complexity to SVM, not simplification.",
-        "c": "Correct!It helps handle non-linear data by mapping it to a higher-dimensional space.",
-        "d": "Feature selection is a separate process, not handled by kernels."
+        "a": "The kernel trick avoids explicit (and expensive) transformation.",
+        "b": "Correct! It computes inner products in the higher-dimensional space directly and efficiently.",
+        "c": "It implicitly increases dimensionality, does not reduce it.",
+        "d": "Outlier handling is done via the soft-margin parameter C, not the kernel."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In highly imbalanced credit card fraud datasets, which of the following is generally the most informative summary metric?",
+      "answers": {
+        "a": "Overall accuracy",
+        "b": "ROC-AUC",
+        "c": "Precision-Recall AUC (PR-AUC)",
+        "d": "Mean Squared Error"
+      },
+      "explanations": {
+        "a": "Misleading when fraud < 0.2% (a trivial classifier gets >99.8% accuracy).",
+        "b": "ROC-AUC is overly optimistic in extreme imbalance.",
+        "c": "Correct! PR-AUC focuses on the rare positive class and is the preferred metric in fraud detection literature.",
+        "d": "MSE is a regression metric."
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
     },
     {
-      "question": "Which metric is most important when evaluating a fraud detection model?",
+      "question": "What does a very large value of the regularization parameter C indicate in soft-margin SVM?",
       "answers": {
-        "a": "Accuracy",
-        "b": "Precision",
-        "c": "Recall",
-        "d": "F1-Score"
+        "a": "The model prioritizes a wide margin even if many points are misclassified",
+        "b": "The model tries to classify nearly all training points correctly, accepting a narrower margin",
+        "c": "The model ignores the margin and only minimizes hinge loss",
+        "d": "The model switches to a hard-margin formulation"
       },
       "explanations": {
-        "a": "Accuracy can be misleading with imbalanced data.",
-        "b": "Precision is important, but doesn't consider false negatives.",
-        "c": "Recall matters, but may sacrifice precision.",
-        "d": "Correct!F1-score balances both precision and recall — ideal for fraud detection."
+        "a": "This describes small C.",
+        "b": "Correct! Large C → low tolerance for training errors → risk of overfitting.",
+        "c": "Hinge loss is always part of the objective.",
+        "d": "Hard-margin is only possible when C → ∞ and data is linearly separable."
       },
-      "correctAnswer": "d",
-      "difficulty": "beginner"
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     },
     {
-      "question": "What does a high regularization parameter (C) in SVM signify?",
+      "question": "Which of the following statements about support vectors is true?",
       "answers": {
-        "a": "A wider margin with more misclassifications",
-        "b": "A simpler model with fewer support vectors",
-        "c": "A narrower margin and fewer training errors",
-        "d": "Removal of the kernel function"
+        "a": "They are all the points inside the margin",
+        "b": "They are the points that lie exactly on or within the margin boundaries and determine the hyperplane",
+        "c": "They are randomly selected training examples",
+        "d": "They are only the correctly classified points"
       },
       "explanations": {
-        "a": "Low C allows a wider margin with more errors.",
-        "b": "High C increases complexity, not simplification.",
-        "c": "Correct!High C focuses on classifying all training points correctly.",
-        "d": "Kernel is unrelated to the C parameter."
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "In the context of SVM, what are support vectors?",
-      "answers": {
-        "a": "Outliers in the dataset",
-        "b": "Points that define the decision boundary",
-        "c": "The largest features in the dataset",
-        "d": "Weights used to normalize data"
-      },
-      "explanations": {
-        "a": "Outliers may or may not be support vectors.",
-        "b": "Correct!Support vectors lie closest to the margin and influence the hyperplane.",
-        "c": "Features and support vectors are unrelated concepts.",
-        "d": "Data normalization is done separately before model training."
+        "b": "Correct! Only support vectors (with αᵢ > 0) influence the final model; all others can be removed without changing the solution."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "Why is RBF kernel often preferred in fraud detection over linear kernel?",
+      "question": "Why is the RBF (Gaussian) kernel typically the best-performing choice for credit card fraud detection with SVM?",
       "answers": {
-        "a": "It is faster in computation",
-        "b": "It doesn’t require preprocessing",
-        "c": "It captures complex, non-linear relationships",
-        "d": "It increases dataset size"
+        "a": "It is the fastest to compute",
+        "b": "It assumes linear separability",
+        "c": "It can create highly flexible, localized decision boundaries suitable for complex fraud patterns",
+        "d": "It requires no hyperparameter tuning"
       },
       "explanations": {
-        "a": "RBF is more computationally intensive than linear.",
-        "b": "SVM still requires preprocessing like normalization.",
-        "c": "Correct!RBF can handle complex boundaries between classes effectively.",
-        "d": "It doesn’t change dataset size, just feature space mapping."
+        "c": "Correct! Real-world fraud data is non-linearly separable with intricate patterns; RBF excels at modeling these localized structures."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Which preprocessing step is considered absolutely essential before training an SVM (especially with RBF kernel) on fraud data?",
+      "answers": {
+        "a": "Feature scaling / standardization",
+        "b": "Converting all features to categorical",
+        "c": "Removing 99% of legitimate transactions",
+        "d": "Applying PCA to reduce to 2 dimensions"
+      },
+      "explanations": {
+        "a": "Correct! RBF kernel is extremely sensitive to feature scales; unscaled features lead to poor performance."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
     }
   ]
 }

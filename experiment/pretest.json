@@ -2,72 +2,91 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What is the main goal of using Support Vector Machine (SVM) in credit card fraud detection?",
+      "question": "What is the primary goal of SVM when applied to credit card fraud detection?",
       "answers": {
-        "a": "To reduce the number of credit card transactions",
-        "b": "To identify fraudulent transactions accurately",
-        "c": "To increase transaction speed",
-        "d": "To encrypt transaction data"
+        "a": "To encrypt transaction data",
+        "b": "To classify transactions as fraudulent or legitimate",
+        "c": "To speed up payment processing",
+        "d": "To generate new transaction records"
       },
       "explanations": {
-        "a": "The goal is not to limit transactions but to detect fraud within them.",
-        "b": "Correct! SVM is used to classify and detect fraudulent vs. legitimate transactions.",
-        "c": "SVM focuses on classification accuracy, not transaction processing speed.",
-        "d": "Encryption is a security function, not related to SVM or classification."
+        "a": "Encryption is unrelated to SVM.",
+        "b": "Correct! SVM is a supervised classifier that separates fraud from genuine transactions.",
+        "c": "SVM does not affect processing speed.",
+        "d": "Generation of synthetic data is done by other techniques (e.g., SMOTE)."
       },
       "correctAnswer": "b",
       "difficulty": "beginner"
     },
     {
-      "question": "Which of the following is NOT a commonly used kernel in SVM?",
+      "question": "In SVM terminology, the data points that define the position of the maximum-margin hyperplane are called:",
       "answers": {
-        "a": "Linear kernel",
-        "b": "Polynomial kernel",
-        "c": "Radial Basis Function (RBF) kernel",
-        "d": "Sigmoid kernel"
+        "a": "Outliers",
+        "b": "Slack vectors",
+        "c": "Support vectors",
+        "d": "Boundary points"
       },
       "explanations": {
-        "a": "Commonly used when data is linearly separable.",
-        "b": "Used to model complex, non-linear relationships.",
-        "c": "Very popular for non-linear classification tasks.",
-        "d": "Correct!Rarely used in practice due to unstable performance in many cases."
-      },
-      "correctAnswer": "d",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "Why is SVM effective in handling credit card fraud detection problems?",
-      "answers": {
-        "a": "It requires no preprocessing",
-        "b": "It automatically balances the dataset",
-        "c": "It performs well with high-dimensional and imbalanced data",
-        "d": "It always gives 100% accuracy"
-      },
-      "explanations": {
-        "a": "Preprocessing like normalization is essential for SVM performance.",
-        "b": "Class balancing techniques must be applied manually.",
-        "c": "Correct!It performs well with high-dimensional and imbalanced data",
-        "d": "No model guarantees 100% accuracy in real-world scenarios."
+        "c": "Correct! Only support vectors influence the final hyperplane and margin."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
-      "question": "What is the role of kernel functions in SVM?",
+      "question": "Which kernel is most frequently recommended for real-world credit card fraud detection with SVM?",
       "answers": {
-        "a": "To convert numeric data into categorical",
-        "b": "To optimize precision and recall",
-        "c": "To map data into a higher-dimensional space for better separability",
-        "d": "To remove outliers from the data"
+        "a": "Linear",
+        "b": "Polynomial",
+        "c": "Radial Basis Function (RBF)",
+        "d": "Sigmoid"
       },
       "explanations": {
-        "a": "Data type conversion is unrelated to kernels.",
-        "b": "Precision and recall are performance metrics, not roles of kernel functions.",
-        "c": "Correct!To map data into a higher-dimensional space for better separability",
-        "d": "Kernel functions do not remove outliers; that requires other preprocessing techniques."
+        "c": "Correct! RBF is the most popular and usually outperforms others due to its flexibility in modeling complex, localized fraud patterns."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Why is accuracy a misleading metric for evaluating fraud detection models?",
+      "answers": {
+        "a": "Because fraud rates are extremely low (severe class imbalance)",
+        "b": "Because SVM cannot calculate accuracy",
+        "c": "Because accuracy requires balanced classes to be meaningful",
+        "d": "Because fraud data has no ground truth"
+      },
+      "explanations": {
+        "a": "Correct! With fraud <0.2%, a model predicting 'always legitimate' achieves >99.8% accuracy but detects zero fraud."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the main role of the regularization parameter C in soft-margin SVM?",
+      "answers": {
+        "a": "To control the shape of the RBF kernel",
+        "b": "To balance margin maximization versus training error minimization",
+        "c": "To scale the input features",
+        "d": "To determine the number of support vectors directly"
+      },
+      "explanations": {
+        "b": "Correct! Small C → larger margin (more tolerant to errors); large C → fewer errors (risk of overfitting)."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In highly imbalanced fraud detection problems, which evaluation metric is generally preferred over ROC-AUC?",
+      "answers": {
+        "a": "Accuracy",
+        "b": "Precision-Recall AUC (PR-AUC)",
+        "c": "F1-score of the majority class",
+        "d": "Mean Absolute Error"
+      },
+      "explanations": {
+        "b": "Correct! PR-AUC focuses on performance on the rare fraud class and is much more informative than ROC-AUC when positive examples are scarce."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }
