@@ -1,0 +1,98 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the main advantage of the kernel trick in Support Vector Machines?",
+      "answers": {
+        "a": "It explicitly transforms the data into a very high-dimensional space",
+        "b": "It allows non-linear decision boundaries without ever computing coordinates in the high-dimensional space",
+        "c": "It reduces the number of features in the dataset",
+        "d": "It automatically removes outliers"
+      },
+      "explanations": {
+        "a": "The kernel trick avoids explicit (and expensive) transformation.",
+        "b": "Correct! It computes inner products in the higher-dimensional space directly and efficiently.",
+        "c": "It implicitly increases dimensionality, does not reduce it.",
+        "d": "Outlier handling is done via the soft-margin parameter C, not the kernel."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In highly imbalanced credit card fraud datasets, which of the following is generally the most informative summary metric?",
+      "answers": {
+        "a": "Overall accuracy",
+        "b": "ROC-AUC",
+        "c": "Precision-Recall AUC (PR-AUC)",
+        "d": "Mean Squared Error"
+      },
+      "explanations": {
+        "a": "Misleading when fraud < 0.2% (a trivial classifier gets >99.8% accuracy).",
+        "b": "ROC-AUC is overly optimistic in extreme imbalance.",
+        "c": "Correct! PR-AUC focuses on the rare positive class and is the preferred metric in fraud detection literature.",
+        "d": "MSE is a regression metric."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What does a very large value of the regularization parameter C indicate in soft-margin SVM?",
+      "answers": {
+        "a": "The model prioritizes a wide margin even if many points are misclassified",
+        "b": "The model tries to classify nearly all training points correctly, accepting a narrower margin",
+        "c": "The model ignores the margin and only minimizes hinge loss",
+        "d": "The model switches to a hard-margin formulation"
+      },
+      "explanations": {
+        "a": "This describes small C.",
+        "b": "Correct! Large C → low tolerance for training errors → risk of overfitting.",
+        "c": "Hinge loss is always part of the objective.",
+        "d": "Hard-margin is only possible when C → ∞ and data is linearly separable."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which of the following statements about support vectors is true?",
+      "answers": {
+        "a": "They are all the points inside the margin",
+        "b": "They are the points that lie exactly on or within the margin boundaries and determine the hyperplane",
+        "c": "They are randomly selected training examples",
+        "d": "They are only the correctly classified points"
+      },
+      "explanations": {
+        "b": "Correct! Only support vectors (with αᵢ > 0) influence the final model; all others can be removed without changing the solution."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Why is the RBF (Gaussian) kernel typically the best-performing choice for credit card fraud detection with SVM?",
+      "answers": {
+        "a": "It is the fastest to compute",
+        "b": "It assumes linear separability",
+        "c": "It can create highly flexible, localized decision boundaries suitable for complex fraud patterns",
+        "d": "It requires no hyperparameter tuning"
+      },
+      "explanations": {
+        "c": "Correct! Real-world fraud data is non-linearly separable with intricate patterns; RBF excels at modeling these localized structures."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which preprocessing step is considered absolutely essential before training an SVM (especially with RBF kernel) on fraud data?",
+      "answers": {
+        "a": "Feature scaling / standardization",
+        "b": "Converting all features to categorical",
+        "c": "Removing 99% of legitimate transactions",
+        "d": "Applying PCA to reduce to 2 dimensions"
+      },
+      "explanations": {
+        "a": "Correct! RBF kernel is extremely sensitive to feature scales; unscaled features lead to poor performance."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the primary goal of SVM when applied to credit card fraud detection?",
+      "answers": {
+        "a": "To encrypt transaction data",
+        "b": "To classify transactions as fraudulent or legitimate",
+        "c": "To speed up payment processing",
+        "d": "To generate new transaction records"
+      },
+      "explanations": {
+        "a": "Encryption is unrelated to SVM.",
+        "b": "Correct! SVM is a supervised classifier that separates fraud from genuine transactions.",
+        "c": "SVM does not affect processing speed.",
+        "d": "Generation of synthetic data is done by other techniques (e.g., SMOTE)."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In SVM terminology, the data points that define the position of the maximum-margin hyperplane are called:",
+      "answers": {
+        "a": "Outliers",
+        "b": "Slack vectors",
+        "c": "Support vectors",
+        "d": "Boundary points"
+      },
+      "explanations": {
+        "c": "Correct! Only support vectors influence the final hyperplane and margin."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which kernel is most frequently recommended for real-world credit card fraud detection with SVM?",
+      "answers": {
+        "a": "Linear",
+        "b": "Polynomial",
+        "c": "Radial Basis Function (RBF)",
+        "d": "Sigmoid"
+      },
+      "explanations": {
+        "c": "Correct! RBF is the most popular and usually outperforms others due to its flexibility in modeling complex, localized fraud patterns."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Why is accuracy a misleading metric for evaluating fraud detection models?",
+      "answers": {
+        "a": "Because fraud rates are extremely low (severe class imbalance)",
+        "b": "Because SVM cannot calculate accuracy",
+        "c": "Because accuracy requires balanced classes to be meaningful",
+        "d": "Because fraud data has no ground truth"
+      },
+      "explanations": {
+        "a": "Correct! With fraud <0.2%, a model predicting 'always legitimate' achieves >99.8% accuracy but detects zero fraud."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the main role of the regularization parameter C in soft-margin SVM?",
+      "answers": {
+        "a": "To control the shape of the RBF kernel",
+        "b": "To balance margin maximization versus training error minimization",
+        "c": "To scale the input features",
+        "d": "To determine the number of support vectors directly"
+      },
+      "explanations": {
+        "b": "Correct! Small C → larger margin (more tolerant to errors); large C → fewer errors (risk of overfitting)."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In highly imbalanced fraud detection problems, which evaluation metric is generally preferred over ROC-AUC?",
+      "answers": {
+        "a": "Accuracy",
+        "b": "Precision-Recall AUC (PR-AUC)",
+        "c": "F1-score of the majority class",
+        "d": "Mean Absolute Error"
+      },
+      "explanations": {
+        "b": "Correct! PR-AUC focuses on performance on the rare fraud class and is much more informative than ROC-AUC when positive examples are scarce."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    }
+  ]
+}
