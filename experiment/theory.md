@@ -7,7 +7,7 @@ This experiment investigates the application of **Support Vector Machines (SVM)*
 
 #### **Support Vector Machine (SVM)**
 
-Support Vector Machine is a supervised classification (and regression) algorithm that constructs an optimal **hyperplane** to separate classes while maximizing the **margin** — the distance between the hyperplane and the nearest data points from each class.
+SVM constructs an optimal **hyperplane** that separates classes while **maximizing the margin** — the distance to the nearest points (support vectors) from each class.
 
 ##### **Key Concepts**
 
@@ -15,12 +15,13 @@ Support Vector Machine is a supervised classification (and regression) algorithm
 - Maximizing the margin improves generalization performance on unseen data.
 - For datasets that are not perfectly separable, SVM introduces **slack variables** (ξᵢ) and a regularization parameter **C** to allow controlled misclassifications (soft margin SVM).
 
-The primal optimization problem is:
 
-$$
-\min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} \xi_i \quad 
-\text{s.t.} \quad y_i (w^T \phi(x_i) + b) \geq 1 - \xi_i, \quad \xi_i \geq 0
-$$
+**Primal Optimization Problem (Soft Margin SVM):**
+
+**`min (1/2) ||w||² + C Σ(i=1 to n) ξᵢ`**
+
+Subject to:  
+**`yᵢ (wᵀ φ(xᵢ) + b) ≥ 1 − ξᵢ`** and **`ξᵢ ≥ 0  ∀i`**
 
 ##### **Why SVM is Effective for Fraud Detection**
 
@@ -31,32 +32,30 @@ $$
 
 #### **Linear vs. Non-Linear SVM**
 
-| Type               | Applicability                                      | Decision Boundary                  |
-|--------------------|----------------------------------------------------|-------------------------------------|
-| **Linear SVM**     | Data approximately separable by a hyperplane      | Straight line/hyperplane            |
-| **Non-Linear SVM** | Complex, overlapping, or irregular patterns       | Curved/complex boundary via kernel trick |
+| Type               | When to Use                                        | Decision Boundary            |
+|--------------------|----------------------------------------------------|------------------------------|
+| **Linear SVM**     | Classes nearly separable by a straight line        | Straight hyperplane          |
+| **Non-Linear SVM** | Real-world fraud: complex, overlapping patterns    | Curved/flexible boundary     |
 
-Real-world credit card fraud data is almost always **non-linearly separable**, making kernel-based SVMs particularly valuable.
+Fraud data is almost always **non-linearly separable** → kernel SVM is essential.
 
-#### **Kernel Functions** (The Kernel Trick)
+#### **Kernel Functions (The Kernel Trick)**
 
-Instead of explicitly mapping data to a high-dimensional space (which would be computationally expensive), kernels compute the inner product in the transformed space directly.
+| Kernel                  | Formula                                                      | Best For / Characteristics                              |
+|-------------------------|--------------------------------------------------------------|----------------------------------------------------------|
+| **Linear**              | **`K(xᵢ, xⱼ) = xᵢᵀ xⱼ`**                                    | Fast, good when data is almost linearly separable       |
+| **Polynomial**          | **`K(xᵢ, xⱼ) = (γ xᵢᵀ xⱼ + r)ᵈ`**                          | Captures polynomial patterns; d = degree                 |
+| **RBF / Gaussian**      | **`K(xᵢ, xⱼ) = exp(−γ ||xᵢ − xⱼ||²)`**                     | Most popular for fraud detection — highly flexible        |
+| **Sigmoid**             | **`K(xᵢ, xⱼ) = tanh(γ xᵢᵀ xⱼ + r)`**                       | Rarely used in practice                                   |
 
-| Kernel                  | Formula                                                      | Characteristics                                                                 |
-|-------------------------|--------------------------------------------------------------|-------------------------------------------------------------------------|
-| **Linear**              | $ K(x_i, x_j) = x_i^T x_j $                                    | Fast, suitable when classes are nearly linearly separable               |
-| **Polynomial**          | $ K(x_i, x_j) = (\gamma x_i^T x_j + r)^d $                    | Captures polynomial relationships; degree $ d $ controls complexity   |
-| **Radial Basis Function (RBF / Gaussian)** | $ K(x_i, x_j) = \exp(-\gamma \|x_i - x_j\|^2) $ | Most popular for fraud detection; creates highly flexible boundaries   |
-| **Sigmoid**             | $ K(x_i, x_j) = \tanh(\gamma x_i^T x_j + r) $                  | Behaves like a two-layer neural network; less commonly used in practice |
-
-In fraud detection tasks, the **RBF kernel** typically outperforms others due to its ability to model intricate, localized patterns.
+**RBF kernel almost always wins** in credit card fraud tasks.
 
 #### **Important Hyperparameters**
 
-| Parameter | Role                                                                 | Effect of Values                                      |
-|-----------|----------------------------------------------------------------------|-------------------------------------------------------|
-| **C**     | Trade-off between margin maximization and training error                 | Small C → larger margin, more misclassifications allowed<br>Large C → narrow margin, fewer misclassifications (risk of overfitting) |
-| **γ (gamma)** | Controls reach of each training example (only for RBF, polynomial, sigmoid) | Small γ → smooth boundary<br>Large γ → tight, wiggly boundary (overfitting risk) |
+| Parameter | Role                                                      | Effect of Values                                           |
+|----------|-----------------------------------------------------------|------------------------------------------------------------|
+| **C**    | Controls penalty for misclassification                     | Small C → softer margin, more tolerant<br>Large C harder margin, less tolerant (can overfit) |
+| **γ (gamma)**  | How far the influence of a single training point reaches   | Small γ smooth boundary<br>Large γ tight, complex boundary (overfitting risk) |
 
 Optimal (C, γ) are usually found via grid/random search with cross-validation.
 
@@ -71,5 +70,3 @@ Because of imbalance, **accuracy is misleading**. Preferred metrics are:
 - **Precision**, **Recall**, **F1-score** (especially on the fraud class)
 - **Precision-Recall AUC** (PR-AUC) — more informative than ROC-AUC in highly imbalanced settings
 - **Confusion Matrix** and **Cost-sensitive evaluation**
-
-
